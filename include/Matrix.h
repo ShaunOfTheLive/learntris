@@ -21,7 +21,7 @@ class Matrix
     void parse(Vector2DChar);
   protected:
   private:
-    vector<vector<Colour> > matrix;
+    Vector2DColour matrix;
 
     void printCell(Colour);
 };
