@@ -2,6 +2,9 @@
 #include <vector>
 #include "Matrix.h"
 
+//TODO: change switch to handle multi-character strings
+//        "?s" is a valid input
+
 using namespace std;
 
 typedef vector<vector<char> > Vector2DChar;
@@ -11,6 +14,8 @@ int main()
   char command;
   Matrix matrix;
   Vector2DChar matrixChars(HEIGHT, vector<char>(WIDTH, '.'));
+
+  int score;
 
   do
   {
@@ -45,6 +50,9 @@ int main()
           }
         }
         matrix.parse(matrixChars);
+        break;
+      case 'c':
+        matrix.clear();
         break;
     }
   } while(command != 'q');

@@ -31,9 +31,9 @@ void Matrix::printCell(Colour cell) {
 }
 
 void Matrix::print() {
-  for (int i = 0; i < matrix.size(); ++i) {
+  for (size_t i = 0; i < matrix.size(); ++i) {
     printCell(matrix[i][0]);
-    for (int j = 1; j < matrix[0].size(); ++j) {
+    for (size_t j = 1; j < matrix[0].size(); ++j) {
       cout << " ";
       printCell(matrix[i][j]);
     }
@@ -43,19 +43,28 @@ void Matrix::print() {
 
 void Matrix::parse(Vector2DChar matrix)
 {
-    for (int i = 0; i < matrix.size(); ++i) {
-      for (int j = 0; j < matrix[0].size(); ++j) {
-        //read in matrix[i][j], look it up in matrixMap, assign that to Matrix::matrix[i][j]
-        //TODO: rename member variable to m_matrix
-        vector<char>::iterator it = find(matrixMap.begin(), matrixMap.end(), matrix[i][j]);
-        if (it == matrixMap.end()) {
-          cout << "ERROR" << endl;
-        }
-        int dist = distance(matrixMap.begin(), find(matrixMap.begin(), matrixMap.end(), matrix[i][j]));
-        if (dist != 0) {
-          //cout << dist << endl;
-        }
-        Matrix::matrix[i][j] = (Colour)distance(matrixMap.begin(), find(matrixMap.begin(), matrixMap.end(), matrix[i][j]));
+  for (size_t i = 0; i < matrix.size(); ++i) {
+    for (size_t j = 0; j < matrix[0].size(); ++j) {
+      //read in matrix[i][j], look it up in matrixMap, assign that to Matrix::matrix[i][j]
+      //TODO: rename member variable to m_matrix
+      vector<char>::iterator it = find(matrixMap.begin(), matrixMap.end(), matrix[i][j]);
+      if (it == matrixMap.end()) {
+        cout << "ERROR" << endl;
       }
+      int dist = distance(matrixMap.begin(), find(matrixMap.begin(), matrixMap.end(), matrix[i][j]));
+      if (dist != 0) {
+        //cout << dist << endl;
+      }
+      Matrix::matrix[i][j] = (Colour)distance(matrixMap.begin(), find(matrixMap.begin(), matrixMap.end(), matrix[i][j]));
+    }
+  }
+}
+
+void Matrix::clear()
+{
+  for (size_t i = 0; i < matrix.size(); ++i) {
+    for (size_t j = 0; j < matrix[0].size(); ++j) {
+      matrix[i][j] = EMPTY;
+    }
   }
 }

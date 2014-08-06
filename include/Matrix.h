@@ -21,6 +21,7 @@ class Matrix
 
     void print();
     void parse(Vector2DChar);
+    void clear();
   protected:
   private:
     Vector2DColour matrix;
