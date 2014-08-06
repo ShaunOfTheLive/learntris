@@ -10,7 +10,7 @@ int main()
 {
   char command;
   Matrix matrix;
-  Vector2DChar matrixChars(HEIGHT, vector<char>(WIDTH, Matrix::EMPTY));
+  Vector2DChar matrixChars(HEIGHT, vector<char>(WIDTH, '.'));
 
   do
   {
@@ -34,9 +34,17 @@ int main()
         for (int i = 0; i < HEIGHT; ++i) {
           for (int j = 0; j < WIDTH; ++j) {
             cin >> square;
+            //debug
+            if (square == 'Q') {
+              j = WIDTH;
+              i = HEIGHT;
+              break;
+            }
             matrixChars[i][j] = square;
+            //matrix.parse(matrixChars);
           }
         }
+        matrix.parse(matrixChars);
         break;
     }
   } while(command != 'q');

@@ -17,11 +17,14 @@ class Matrix
 
     enum Colour {EMPTY = 0, GREEN, RED, BLUE, MAGENTA, YELLOW, CYAN, ORANGE};
     typedef vector<vector<Colour> > Vector2DColour;
+    static char colours[];
+
     void print();
     void parse(Vector2DChar);
   protected:
   private:
     Vector2DColour matrix;
+    vector<char> matrixMap;
 
     void printCell(Colour);
 };
