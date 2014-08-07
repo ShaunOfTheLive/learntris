@@ -68,3 +68,15 @@ void Matrix::clear()
     }
   }
 }
+
+void Matrix::step(int &score, int &linesCleared)
+{
+  for (size_t i = 0; i < matrix.size(); ++i) {
+    // if an empty cell is not found in the row
+    if (find(matrix[i].begin(), matrix[i].end(), EMPTY) == matrix[i].end()) {
+      fill(matrix[i].begin(), matrix[i].end(), EMPTY);
+      score += 100;
+      linesCleared += 1;
+    }
+  }
+}

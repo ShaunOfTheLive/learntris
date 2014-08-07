@@ -22,6 +22,7 @@ class Matrix
     void print();
     void parse(Vector2DChar);
     void clear();
+    void step(int &score, int &linesCleared);
   protected:
   private:
     Vector2DColour matrix;
