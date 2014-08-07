@@ -5,7 +5,9 @@
 //TODO: change switch to handle multi-character strings
 //        "?s" is a valid input
 
-using namespace std;
+using std::cout;
+using std::cin;
+using std::endl;
 
 typedef vector<vector<char> > Vector2DChar;
 
