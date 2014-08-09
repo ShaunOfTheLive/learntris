@@ -2,9 +2,7 @@
 #include <vector>
 #include <string>
 #include "Matrix.h"
-
-//TODO: change switch to handle multi-character strings
-//        "?s" is a valid input
+#include "Tetramino.h"
 
 using std::cout;
 using std::cin;
@@ -21,6 +19,8 @@ int main()
   string command;
   Matrix matrix;
   Vector2DChar matrixChars(HEIGHT, vector<char>(WIDTH, '.'));
+
+  Tetramino* activeTetramino = NULL;
 
   int score = 0;
   int linesCleared = 0;
@@ -74,6 +74,22 @@ int main()
         break;
       case 's':
         matrix.step(score, linesCleared);
+        break;
+      case 't':
+        if (activeTetramino) {
+          activeTetramino->print();
+        } else {
+          cout << "ERROR!" << endl;
+        }
+        break;
+      case 'S':
+      case 'Z':
+      case 'J':
+      case 'T':
+      case 'O':
+      case 'I':
+      case 'L':
+        activeTetramino = new Tetramino(command[0]);
         break;
     }
   } while(command[0] != 'q');
