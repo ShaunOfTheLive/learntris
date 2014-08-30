@@ -94,6 +94,9 @@ int main()
       case ')':
         activeTetramino->rotate();
         break;
+      case ';':
+        cout << endl;
+        break;
     }
   } while(command[0] != 'q');
 
