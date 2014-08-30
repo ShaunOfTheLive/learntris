@@ -91,6 +91,9 @@ int main()
       case 'L':
         activeTetramino = new Tetramino(command[0]);
         break;
+      case ')':
+        activeTetramino->rotate();
+        break;
     }
   } while(command[0] != 'q');
 

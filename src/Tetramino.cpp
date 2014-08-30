@@ -6,8 +6,6 @@ using std::endl;
 #include <vector>
 using std::vector;
 
-
-
 char Tetramino::colours[] = {'.', 'g', 'r', 'b', 'm', 'y', 'c', 'o'};
 
 Tetramino::Tetramino(char name)
@@ -69,4 +67,21 @@ void Tetramino::print() {
     }
     cout << endl;
   }
+}
+
+void Tetramino::rotate(Direction dir, int angle) {
+  // just do 90 CW right now for testing
+
+  // this algorithm is only designed for rotating square matrices
+  int size = matrix.size();
+
+  Vector2DColour newMatrix(size, vector<Colour>(size, EMPTY));
+
+  for (int i = 0; i < size; ++i) {
+    for (int j = 0; j < size; ++j) {
+      newMatrix[j][size - 1 - i] = matrix[i][j];
+    }
+  }
+
+  matrix = newMatrix;
 }

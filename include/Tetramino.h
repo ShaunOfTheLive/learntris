@@ -16,6 +16,7 @@ class Tetramino
     virtual ~Tetramino();
 
     enum Colour {EMPTY = 0, GREEN, RED, BLUE, MAGENTA, YELLOW, CYAN, ORANGE};
+    enum Direction {CW = 0, CCW};
     struct tetraminoDef {
       char name;
       Colour colour;
@@ -28,6 +29,7 @@ class Tetramino
     static char colours[];
 
     void print();
+    void rotate(Direction dir = CW, int angle = 90);
 //    static tetraminoDefs[] defineTetraminos();
   protected:
   private:
