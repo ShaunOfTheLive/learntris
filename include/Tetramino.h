@@ -28,6 +28,9 @@ class Tetramino
 
     static char colours[];
 
+    int row;
+    int col;
+
     void print();
     void rotate(Direction dir = CW, int angle = 90);
 //    static tetraminoDefs[] defineTetraminos();

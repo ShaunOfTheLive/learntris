@@ -1,4 +1,4 @@
-#include "Tetramino.h"
+#include "../include/Tetramino.h"
 
 #include <iostream>
 using std::cout;

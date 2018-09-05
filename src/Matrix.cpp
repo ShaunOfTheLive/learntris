@@ -1,4 +1,4 @@
-#include "Matrix.h"
+#include "../include/Matrix.h"
 
 #include <iostream>
 using std::cout;

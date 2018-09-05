@@ -1,8 +1,8 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include "Matrix.h"
-#include "Tetramino.h"
+#include "..\include\Matrix.h"
+#include "..\include\Tetramino.h"
 
 using std::cout;
 using std::cin;
