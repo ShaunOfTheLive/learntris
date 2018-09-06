@@ -2,6 +2,7 @@
 #include <vector>
 #include <string>
 #include <memory>
+#include <limits>
 #include "..\include\Matrix.h"
 #include "..\include\Tetramino.h"
 
@@ -15,7 +16,8 @@ typedef vector<vector<char> > Vector2DChar;
 
 int main()
 {
-  string command;
+  bool quit = false;
+  char command[80];
   Matrix matrix;
   Vector2DChar matrixChars(HEIGHT, vector<char>(WIDTH, '.'));
 
@@ -27,16 +29,22 @@ int main()
   do
   {
     cin.clear();
-    cin >> command;
+    cin.getline(command, 80);
     if (cin.fail())
     {
-        cout << "Please enter a single character" << endl;
-        cin.ignore(80, '\n');
+        cout << "Please enter fewer than 80 characters." << endl;
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     }
 
-    switch (command[0]) {
+    for (int i = 0; i < strlen(command); ++i) {
+      switch (command[i]) {
+      case ' ':
+        // do nothing
+        // TODO: strip spaces first?
+        break;
       case 'q':
-        //quit
+        quit = true;
+        goto quit;
         break;
       case 'p':
         matrix.print();
@@ -59,12 +67,12 @@ int main()
         break;
       case '?':
         switch (command[1]) {
-          case 's':
-            cout << score << endl;
-            break;
-          case 'n':
-            cout << linesCleared << endl;
-            break;
+        case 's':
+          cout << score << endl;
+          break;
+        case 'n':
+          cout << linesCleared << endl;
+          break;
         }
         break;
       case 's':
@@ -73,7 +81,8 @@ int main()
       case 't':
         if (activeTetramino) {
           activeTetramino->print();
-        } else {
+        }
+        else {
           cout << "ERROR!" << endl;
         }
         break;
@@ -84,7 +93,7 @@ int main()
       case 'O':
       case 'I':
       case 'L':
-        matrix.spawnTetramino(command[0]);
+        matrix.spawnTetramino(command[i]);
         activeTetramino = matrix.getActiveTetramino();
         break;
       case ')':
@@ -93,8 +102,11 @@ int main()
       case ';':
         cout << endl;
         break;
+      }
     }
-  } while(command[0] != 'q');
 
+  } while(!quit);
+
+quit:
   return 0;
 }
