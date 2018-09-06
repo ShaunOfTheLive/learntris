@@ -102,6 +102,12 @@ int main()
       case ';':
         cout << endl;
         break;
+      case '<':
+        activeTetramino->nudgeLeft();
+        break;
+      case '>':
+        activeTetramino->nudgeRight();
+        break;
       }
     }
 

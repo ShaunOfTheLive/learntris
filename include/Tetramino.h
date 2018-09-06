@@ -41,6 +41,8 @@ class Tetramino
     void setCol(int);
     int getRow();
     int getCol();
+    void nudgeLeft();
+    void nudgeRight();
   protected:
   private:
     char name;

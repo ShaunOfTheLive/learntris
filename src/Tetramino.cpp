@@ -128,3 +128,13 @@ int Tetramino::getCol()
 {
   return col;
 }
+
+void Tetramino::nudgeLeft()
+{
+  --col;
+}
+
+void Tetramino::nudgeRight()
+{
+  ++col;
+}
