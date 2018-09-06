@@ -12,8 +12,6 @@ using std::string;
 
 typedef vector<vector<char> > Vector2DChar;
 
-void step();
-
 int main()
 {
   string command;

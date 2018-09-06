@@ -21,21 +21,27 @@ Matrix::~Matrix()
   //dtor
 }
 
-//TODO: put this in a namespace or something
-void Matrix::printCell(Colour cell) {
+char Matrix::cellToChar(Colour cell) {
+  char result;
   if (cell <= ORANGE) {
-    cout << colours[cell];
-  } else {
-    cout << "E";
+    result = colours[cell];
   }
+  else {
+    result = 'E';
+  }
+  return result;
 }
 
 void Matrix::print() {
+  Vector2DChar buffer(matrix.size(), vector<char>(matrix[0].size() * 2 - 1, ' '));
   for (size_t i = 0; i < matrix.size(); ++i) {
-    printCell(matrix[i][0]);
-    for (size_t j = 1; j < matrix[0].size(); ++j) {
-      cout << " ";
-      printCell(matrix[i][j]);
+    for (size_t j = 0, k = 0; j < matrix[0].size(); ++j, k += 2) {
+      buffer[i][k] = cellToChar(matrix[i][j]);
+    }
+  }
+  for (size_t i = 0; i < buffer.size(); ++i) {
+    for (size_t j = 0; j < buffer[0].size(); ++j) {
+      cout << buffer[i][j];
     }
     cout << endl;
   }

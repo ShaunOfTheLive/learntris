@@ -50,20 +50,28 @@ Tetramino::tetraminoDef Tetramino::tetraminoDefs[NUM_TETRAS] = {
   {'L', ORANGE,  {3,3}, {{0,2},{1,0},{1,1},{1,2}}}
 };
 
-void Tetramino::printCell(Colour cell) {
+char Tetramino::cellToChar(Colour cell)
+{
+  char result;
   if (cell <= ORANGE) {
-    cout << colours[cell];
-  } else {
-    cout << "E";
+    result = colours[cell];
   }
+  else {
+    result = 'E';
+  }
+  return result;
 }
 
 void Tetramino::print() {
+  Vector2DChar buffer(matrix.size(), vector<char>(matrix[0].size() * 2 - 1, ' '));
   for (size_t i = 0; i < matrix.size(); ++i) {
-    printCell(matrix[i][0]);
-    for (size_t j = 1; j < matrix[0].size(); ++j) {
-      cout << " ";
-      printCell(matrix[i][j]);
+    for (size_t j = 0, k = 0; j < matrix[0].size(); ++j, k+=2) {
+      buffer[i][k] = cellToChar(matrix[i][j]);
+    }
+  }
+  for (size_t i = 0; i < buffer.size(); ++i) {
+    for (size_t j = 0; j < buffer[0].size(); ++j) {
+      cout << buffer[i][j];
     }
     cout << endl;
   }

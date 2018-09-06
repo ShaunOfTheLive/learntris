@@ -28,7 +28,7 @@ class Matrix
     Vector2DColour matrix;
     vector<char> matrixMap;
 
-    void printCell(Colour);
+    char cellToChar(Colour);
 };
 
 

@@ -9,6 +9,8 @@ using std::pair;
 
 #define NUM_TETRAS 7
 
+typedef vector<vector<char> > Vector2DChar;
+
 class Tetramino
 {
   public:
@@ -40,7 +42,7 @@ class Tetramino
     Colour colour;
     Vector2DColour matrix;
 
-    void printCell(Colour);
+    char cellToChar(Colour);
 };
 
 #endif // TETRAMINO_H
