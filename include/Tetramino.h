@@ -34,8 +34,13 @@ class Tetramino
     int col;
 
     void print();
+    void blit(Vector2DChar&, bool capital = false);
     void rotate(Direction dir = CW, int angle = 90);
 //    static tetraminoDefs[] defineTetraminos();
+    void setRow(int);
+    void setCol(int);
+    int getRow();
+    int getCol();
   protected:
   private:
     char name;

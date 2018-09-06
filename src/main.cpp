@@ -19,7 +19,7 @@ int main()
   Matrix matrix;
   Vector2DChar matrixChars(HEIGHT, vector<char>(WIDTH, '.'));
 
-  std::unique_ptr<Tetramino> activeTetramino;
+  std::shared_ptr<Tetramino> activeTetramino;
 
   int score = 0;
   int linesCleared = 0;
@@ -40,6 +40,9 @@ int main()
         break;
       case 'p':
         matrix.print();
+        break;
+      case 'P':
+        matrix.printWithActive();
         break;
       case 'g':
         char square;
@@ -81,7 +84,8 @@ int main()
       case 'O':
       case 'I':
       case 'L':
-        activeTetramino = std::unique_ptr<Tetramino>(new Tetramino(command[0]));
+        matrix.spawnTetramino(command[0]);
+        activeTetramino = matrix.getActiveTetramino();
         break;
       case ')':
         activeTetramino->rotate();

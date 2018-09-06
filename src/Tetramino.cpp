@@ -5,6 +5,7 @@ using std::cout;
 using std::endl;
 #include <vector>
 using std::vector;
+#include <ctype.h>
 
 char Tetramino::colours[] = {'.', 'g', 'r', 'b', 'm', 'y', 'c', 'o'};
 
@@ -23,6 +24,8 @@ Tetramino::Tetramino(char name)
   } else {
     name = tetraminoDefs[i].name;
     colour = tetraminoDefs[i].colour;
+    row = 0;
+    col = 0;
     int width = tetraminoDefs[i].matrixSize[0];
     int height = tetraminoDefs[i].matrixSize[1];
     matrix = Vector2DColour(width, vector<Colour>(height, EMPTY));
@@ -77,6 +80,18 @@ void Tetramino::print() {
   }
 }
 
+void Tetramino::blit(Vector2DChar& buffer, bool capital)
+{
+  for (size_t i = 0, r = row; i < matrix.size(); ++i, ++r) {
+    for (size_t j = 0, c = col * 2; j < matrix[0].size(); ++j, c += 2) {
+      buffer[r][c] = cellToChar(matrix[i][j]); // map i,j to rows and cols in buffer
+      if (capital) {
+        buffer[r][c] = toupper(buffer[r][c]);
+      }
+    }
+  }
+}
+
 void Tetramino::rotate(Direction dir, int angle) {
   // just do 90 CW right now for testing
 
@@ -92,4 +107,24 @@ void Tetramino::rotate(Direction dir, int angle) {
   }
 
   matrix = newMatrix;
+}
+
+void Tetramino::setRow(int row)
+{
+  this->row = row;
+}
+
+void Tetramino::setCol(int col)
+{
+  this->col = col;
+}
+
+int Tetramino::getRow()
+{
+  return row;
+}
+
+int Tetramino::getCol()
+{
+  return col;
 }

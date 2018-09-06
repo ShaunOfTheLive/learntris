@@ -21,6 +21,15 @@ Matrix::~Matrix()
   //dtor
 }
 
+void Matrix::printBuffer(Vector2DChar buffer) {
+  for (size_t i = 0; i < buffer.size(); ++i) {
+    for (size_t j = 0; j < buffer[0].size(); ++j) {
+      cout << buffer[i][j];
+    }
+    cout << endl;
+  }
+}
+
 char Matrix::cellToChar(Colour cell) {
   char result;
   if (cell <= ORANGE) {
@@ -39,12 +48,18 @@ void Matrix::print() {
       buffer[i][k] = cellToChar(matrix[i][j]);
     }
   }
-  for (size_t i = 0; i < buffer.size(); ++i) {
-    for (size_t j = 0; j < buffer[0].size(); ++j) {
-      cout << buffer[i][j];
+  printBuffer(buffer);
+}
+
+void Matrix::printWithActive() {
+  Vector2DChar buffer(matrix.size(), vector<char>(matrix[0].size() * 2 - 1, ' '));
+  for (size_t i = 0; i < matrix.size(); ++i) {
+    for (size_t j = 0, k = 0; j < matrix[0].size(); ++j, k += 2) {
+      buffer[i][k] = cellToChar(matrix[i][j]);
     }
-    cout << endl;
   }
+  activeTetramino->blit(buffer, true);
+  printBuffer(buffer);
 }
 
 void Matrix::parse(Vector2DChar matrix)
@@ -85,4 +100,25 @@ void Matrix::step(int &score, int &linesCleared)
       linesCleared += 1;
     }
   }
+}
+
+void Matrix::spawnTetramino(char name)
+{
+  if (activeTetramino) {
+    // TODO: exception? can't spawn another active tetramino until the current one is inactive
+  }
+  else {
+    activeTetramino = std::shared_ptr<Tetramino>(new Tetramino(name));
+    if (name == 'O') {
+      activeTetramino->setCol(4);
+    }
+    else {
+      activeTetramino->setCol(3);
+    }
+  }
+}
+
+std::shared_ptr<Tetramino> Matrix::getActiveTetramino()
+{
+  return activeTetramino;
 }
