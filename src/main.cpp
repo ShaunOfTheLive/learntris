@@ -108,6 +108,9 @@ int main()
       case '>':
         activeTetramino->nudgeRight();
         break;
+      case 'v':
+        activeTetramino->nudgeDown();
+        break;
       }
     }
 

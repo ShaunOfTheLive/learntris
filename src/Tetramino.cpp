@@ -138,3 +138,8 @@ void Tetramino::nudgeRight()
 {
   ++col;
 }
+
+void Tetramino::nudgeDown()
+{
+  ++row;
+}
