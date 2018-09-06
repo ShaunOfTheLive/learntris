@@ -118,6 +118,34 @@ void Matrix::spawnTetramino(char name)
   }
 }
 
+void Matrix::nudgeActiveLeft()
+{
+  int col = activeTetramino->getCol();
+  --col;
+  if (col < 0) {
+    col = 0;
+  }
+  activeTetramino->setCol(col);
+}
+
+void Matrix::nudgeActiveRight()
+{
+  int col = activeTetramino->getCol();
+  ++col;
+  if (col + activeTetramino->width > WIDTH) {
+    --col;
+  }
+  activeTetramino->setCol(col);
+}
+
+void Matrix::nudgeActiveDown()
+{
+  int row = activeTetramino->getRow();
+  ++row;
+  // collision detection
+  activeTetramino->setRow(row);
+}
+
 std::shared_ptr<Tetramino> Matrix::getActiveTetramino()
 {
   return activeTetramino;

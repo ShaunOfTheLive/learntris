@@ -103,13 +103,13 @@ int main()
         cout << endl;
         break;
       case '<':
-        activeTetramino->nudgeLeft();
+        matrix.nudgeActiveLeft();
         break;
       case '>':
-        activeTetramino->nudgeRight();
+        matrix.nudgeActiveRight();
         break;
       case 'v':
-        activeTetramino->nudgeDown();
+        matrix.nudgeActiveDown();
         break;
       }
     }

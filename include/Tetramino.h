@@ -32,6 +32,8 @@ class Tetramino
 
     int row;
     int col;
+    int width;
+    int height;
 
     void print();
     void blit(Vector2DChar&, bool capital = false);
@@ -41,6 +43,8 @@ class Tetramino
     void setCol(int);
     int getRow();
     int getCol();
+    int getWidth();
+    int getHeight();
     void nudgeLeft();
     void nudgeRight();
     void nudgeDown();

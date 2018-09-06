@@ -29,6 +29,9 @@ class Matrix
     void clear();
     void step(int &score, int &linesCleared);
     void spawnTetramino(char);
+    void nudgeActiveLeft();
+    void nudgeActiveRight();
+    void nudgeActiveDown();
     std::shared_ptr<Tetramino> getActiveTetramino();
   protected:
   private:

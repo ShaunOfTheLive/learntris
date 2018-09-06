@@ -26,8 +26,8 @@ Tetramino::Tetramino(char name)
     colour = tetraminoDefs[i].colour;
     row = 0;
     col = 0;
-    int width = tetraminoDefs[i].matrixSize[0];
-    int height = tetraminoDefs[i].matrixSize[1];
+    width = tetraminoDefs[i].matrixSize[0];
+    height = tetraminoDefs[i].matrixSize[1];
     matrix = Vector2DColour(width, vector<Colour>(height, EMPTY));
 
     for (int j = 0; j < 4; ++j) {
@@ -127,6 +127,16 @@ int Tetramino::getRow()
 int Tetramino::getCol()
 {
   return col;
+}
+
+int Tetramino::getWidth()
+{
+  return width;
+}
+
+int Tetramino::getHeight()
+{
+  return height;
 }
 
 void Tetramino::nudgeLeft()
