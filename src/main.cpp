@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <memory>
 #include "..\include\Matrix.h"
 #include "..\include\Tetramino.h"
 
@@ -18,7 +19,7 @@ int main()
   Matrix matrix;
   Vector2DChar matrixChars(HEIGHT, vector<char>(WIDTH, '.'));
 
-  Tetramino* activeTetramino = NULL;
+  std::unique_ptr<Tetramino> activeTetramino;
 
   int score = 0;
   int linesCleared = 0;
@@ -80,7 +81,7 @@ int main()
       case 'O':
       case 'I':
       case 'L':
-        activeTetramino = new Tetramino(command[0]);
+        activeTetramino = std::unique_ptr<Tetramino>(new Tetramino(command[0]));
         break;
       case ')':
         activeTetramino->rotate();
