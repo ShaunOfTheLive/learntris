@@ -153,3 +153,33 @@ void Tetramino::nudgeDown()
 {
   ++row;
 }
+
+bool Tetramino::collidesHorz(int row)
+{
+  bool result = false;
+  int innerRow = row - this->row;
+  if (innerRow < 0 || innerRow >= height) {
+    return false;
+  }
+  for (auto it = matrix[innerRow].begin(); it != matrix[innerRow].end(); ++it) {
+    if (*it != EMPTY) {
+      result = true;
+    }
+  }
+  return result;
+}
+
+bool Tetramino::collidesVert(int col)
+{
+  bool result = false;
+  int innerCol = col - this->col;
+  if (innerCol < 0 || innerCol >= width) {
+    return false;
+  }
+  for (auto it = matrix.begin(); it != matrix.end(); ++it) {
+    if (it->at(innerCol) != EMPTY) {
+      result = true;
+    }
+  }
+  return result;
+}

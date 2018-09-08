@@ -120,22 +120,18 @@ void Matrix::spawnTetramino(char name)
 
 void Matrix::nudgeActiveLeft()
 {
-  int col = activeTetramino->getCol();
-  --col;
-  if (col < 0) {
-    col = 0;
+  activeTetramino->nudgeLeft();
+  if (activeTetramino->collidesVert(-1)) {
+    activeTetramino->nudgeRight();
   }
-  activeTetramino->setCol(col);
 }
 
 void Matrix::nudgeActiveRight()
 {
-  int col = activeTetramino->getCol();
-  ++col;
-  if (col + activeTetramino->width > WIDTH) {
-    --col;
+  activeTetramino->nudgeRight();
+  if (activeTetramino->collidesVert(WIDTH)) {
+    activeTetramino->nudgeLeft();
   }
-  activeTetramino->setCol(col);
 }
 
 void Matrix::nudgeActiveDown()
