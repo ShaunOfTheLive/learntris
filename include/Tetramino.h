@@ -48,6 +48,7 @@ class Tetramino
     void nudgeLeft();
     void nudgeRight();
     void nudgeDown();
+    void nudgeUp();
     bool collidesHorz(int);
     bool collidesVert(int);
   protected:

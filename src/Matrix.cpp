@@ -136,10 +136,10 @@ void Matrix::nudgeActiveRight()
 
 void Matrix::nudgeActiveDown()
 {
-  int row = activeTetramino->getRow();
-  ++row;
-  // collision detection
-  activeTetramino->setRow(row);
+  activeTetramino->nudgeDown();
+  if (activeTetramino->collidesHorz(HEIGHT)) {
+    activeTetramino->nudgeUp();
+  }
 }
 
 std::shared_ptr<Tetramino> Matrix::getActiveTetramino()

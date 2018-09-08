@@ -165,6 +165,11 @@ void Tetramino::nudgeDown()
   ++row;
 }
 
+void Tetramino::nudgeUp()
+{
+  --row;
+}
+
 bool Tetramino::collidesHorz(int row)
 {
   bool result = false;
