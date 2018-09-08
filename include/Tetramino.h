@@ -45,10 +45,10 @@ class Tetramino
     int getCol();
     int getWidth();
     int getHeight();
-    void nudgeLeft();
-    void nudgeRight();
-    void nudgeDown();
-    void nudgeUp();
+    void nudgeLeft(int = 1);
+    void nudgeRight(int = 1);
+    void nudgeDown(int = 1);
+    void nudgeUp(int = 1);
     bool collidesHorz(int);
     bool collidesVert(int);
   protected:

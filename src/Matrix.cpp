@@ -142,6 +142,11 @@ void Matrix::nudgeActiveDown()
   }
 }
 
+void Matrix::hardDrop()
+{
+  activeTetramino->nudgeDown();
+}
+
 std::shared_ptr<Tetramino> Matrix::getActiveTetramino()
 {
   return activeTetramino;
