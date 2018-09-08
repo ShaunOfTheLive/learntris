@@ -97,7 +97,10 @@ int main()
         activeTetramino = matrix.getActiveTetramino();
         break;
       case ')':
-        activeTetramino->rotate();
+        activeTetramino->rotate(Tetramino::Direction::CW, 90);
+        break;
+      case '(':
+        activeTetramino->rotate(Tetramino::Direction::CCW, 90);
         break;
       case ';':
         cout << endl;

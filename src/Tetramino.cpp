@@ -84,9 +84,11 @@ void Tetramino::blit(Vector2DChar& buffer, bool capital)
 {
   for (size_t i = 0, r = row; i < matrix.size(); ++i, ++r) {
     for (size_t j = 0, c = col * 2; j < matrix[0].size(); ++j, c += 2) {
-      buffer[r][c] = cellToChar(matrix[i][j]); // map i,j to rows and cols in buffer
-      if (capital) {
-        buffer[r][c] = toupper(buffer[r][c]);
+      if (r >= 0 && r < buffer.size() && c >= 0 && c < buffer[r].size()) {
+        buffer[r][c] = cellToChar(matrix[i][j]); // map i,j to rows and cols in buffer
+        if (capital) {
+          buffer[r][c] = toupper(buffer[r][c]);
+        }
       }
     }
   }
@@ -100,9 +102,18 @@ void Tetramino::rotate(Direction dir, int angle) {
 
   Vector2DColour newMatrix(size, vector<Colour>(size, EMPTY));
 
-  for (int i = 0; i < size; ++i) {
-    for (int j = 0; j < size; ++j) {
-      newMatrix[j][size - 1 - i] = matrix[i][j];
+  if (dir == CW && angle == 90) {
+    for (int i = 0; i < size; ++i) {
+      for (int j = 0; j < size; ++j) {
+        newMatrix[j][size - 1 - i] = matrix[i][j];
+      }
+    }
+  }
+  else if (dir == CCW && angle == 90 || dir == CW && angle == -270) {
+    for (int i = 0; i < size; ++i) {
+      for (int j = 0; j < size; ++j) {
+        newMatrix[i][j] = matrix[j][size - 1 - i];
+      }
     }
   }
 
