@@ -36,7 +36,7 @@ int main()
         cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     }
 
-    for (int i = 0; i < strlen(command); ++i) {
+    for (unsigned int i = 0; i < strlen(command); ++i) {
       switch (command[i]) {
       case ' ':
         // do nothing
@@ -113,6 +113,9 @@ int main()
         break;
       case 'v':
         matrix.nudgeActiveDown();
+        break;
+      case 'V':
+        matrix.hardDrop();
         break;
       }
     }

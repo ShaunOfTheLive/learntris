@@ -30,6 +30,20 @@ void Matrix::printBuffer(Vector2DChar buffer) {
   }
 }
 
+void Matrix::fossilizeTetramino(std::shared_ptr<Tetramino> tetramino)
+{
+  Tetramino::Vector2DColour tMatrix = tetramino->getMatrix();
+  int tRow = tetramino->getRow();
+  int tCol = tetramino->getCol();
+  for (size_t i = 0; i < tMatrix.size(); ++i) {
+    for (size_t j = 0; j < tMatrix[i].size(); ++j) {
+      if (tRow+i >= 0 && tRow+i < matrix.size() && tCol+i >=0 && tCol+i < matrix[tRow+i].size()) {
+        matrix[tRow+i][tCol+j] = (Matrix::Colour)tMatrix[i][j];
+      }
+    }
+  }
+}
+
 char Matrix::cellToChar(Colour cell) {
   char result;
   if (cell <= ORANGE) {
@@ -58,7 +72,9 @@ void Matrix::printWithActive() {
       buffer[i][k] = cellToChar(matrix[i][j]);
     }
   }
-  activeTetramino->blit(buffer, true);
+  if (activeTetramino) {
+    activeTetramino->blit(buffer, true);
+  }
   printBuffer(buffer);
 }
 
@@ -120,25 +136,40 @@ void Matrix::spawnTetramino(char name)
 
 void Matrix::nudgeActiveLeft()
 {
-  activeTetramino->nudgeLeft();
-  if (activeTetramino->collidesVert(-1)) {
-    activeTetramino->nudgeRight();
+  if (activeTetramino) {
+    activeTetramino->nudgeLeft();
+    if (activeTetramino->collidesVert(-1)) {
+      activeTetramino->nudgeRight();
+    }
   }
 }
 
 void Matrix::nudgeActiveRight()
 {
-  activeTetramino->nudgeRight();
-  if (activeTetramino->collidesVert(WIDTH)) {
-    activeTetramino->nudgeLeft();
+  if (activeTetramino) {
+    activeTetramino->nudgeRight();
+    if (activeTetramino->collidesVert(WIDTH)) {
+      activeTetramino->nudgeLeft();
+    }
   }
 }
 
 void Matrix::nudgeActiveDown()
 {
-  activeTetramino->nudgeDown();
-  if (activeTetramino->collidesHorz(HEIGHT)) {
-    activeTetramino->nudgeUp();
+  if (activeTetramino) {
+    activeTetramino->nudgeDown();
+    if (activeTetramino->collidesHorz(HEIGHT)) {
+      activeTetramino->nudgeUp();
+      fossilizeTetramino(activeTetramino);
+      // activeTetramino = nullptr;
+    }
+  }
+}
+
+void Matrix::hardDrop()
+{
+  for (int i = 0; i < HEIGHT; ++i) {
+    nudgeActiveDown();
   }
 }
 

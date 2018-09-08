@@ -32,6 +32,7 @@ class Matrix
     void nudgeActiveLeft();
     void nudgeActiveRight();
     void nudgeActiveDown();
+    void hardDrop();
     std::shared_ptr<Tetramino> getActiveTetramino();
   protected:
   private:
@@ -40,6 +41,7 @@ class Matrix
 
     char cellToChar(Colour);
     static void printBuffer(Vector2DChar);
+    void fossilizeTetramino(std::shared_ptr<Tetramino>);
 };
 
 

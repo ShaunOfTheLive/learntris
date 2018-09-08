@@ -199,3 +199,10 @@ bool Tetramino::collidesVert(int col)
   }
   return result;
 }
+
+Tetramino::Vector2DColour Tetramino::getMatrix()
+{
+  return matrix;
+}
+
+

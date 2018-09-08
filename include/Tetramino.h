@@ -51,6 +51,7 @@ class Tetramino
     void nudgeUp();
     bool collidesHorz(int);
     bool collidesVert(int);
+    Vector2DColour getMatrix();
   protected:
   private:
     char name;
