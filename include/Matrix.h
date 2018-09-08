@@ -32,7 +32,6 @@ class Matrix
     void nudgeActiveLeft();
     void nudgeActiveRight();
     void nudgeActiveDown();
-    void hardDrop();
     std::shared_ptr<Tetramino> getActiveTetramino();
   protected:
   private:

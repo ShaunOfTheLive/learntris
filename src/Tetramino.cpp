@@ -150,24 +150,24 @@ int Tetramino::getHeight()
   return height;
 }
 
-void Tetramino::nudgeLeft(int cols)
+void Tetramino::nudgeLeft()
 {
-  col -= cols;
+  --col;
 }
 
-void Tetramino::nudgeRight(int cols)
+void Tetramino::nudgeRight()
 {
-  col += cols;
+  ++col;
 }
 
-void Tetramino::nudgeDown(int rows)
+void Tetramino::nudgeDown()
 {
-  row += rows;
+  ++row;
 }
 
-void Tetramino::nudgeUp(int rows)
+void Tetramino::nudgeUp()
 {
-  row -= rows;
+  --row;
 }
 
 bool Tetramino::collidesHorz(int row)
