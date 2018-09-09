@@ -86,9 +86,11 @@ void Tetramino::blit(Vector2DChar& buffer, bool capital)
   for (size_t i = 0, r = row; i < matrix.size(); ++i, ++r) {
     for (size_t j = 0, c = col * 2; j < matrix[0].size(); ++j, c += 2) {
       if (r >= 0 && r < buffer.size() && c >= 0 && c < buffer[r].size()) {
-        buffer[r][c] = cellToChar(matrix[i][j]); // map i,j to rows and cols in buffer
-        if (capital) {
-          buffer[r][c] = toupper(buffer[r][c]);
+        if (matrix[i][j] != EMPTY) {
+          buffer[r][c] = cellToChar(matrix[i][j]); // map i,j to rows and cols in buffer
+          if (capital) {
+            buffer[r][c] = toupper(buffer[r][c]);
+          }
         }
       }
     }
