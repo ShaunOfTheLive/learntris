@@ -38,7 +38,9 @@ void Matrix::fossilizeTetramino(std::shared_ptr<Tetramino> tetramino)
   for (size_t i = 0; i < tMatrix.size(); ++i) {
     for (size_t j = 0; j < tMatrix[i].size(); ++j) {
       if (tRow+i >= 0 && tRow+i < matrix.size() && tCol+i >=0 && tCol+i < matrix[tRow+i].size()) {
-        matrix[tRow+i][tCol+j] = (Matrix::Colour)tMatrix[i][j];
+        if (tMatrix[i][j] != EMPTY) {
+          matrix[tRow + i][tCol + j] = (Matrix::Colour)tMatrix[i][j];
+        }
       }
     }
   }
