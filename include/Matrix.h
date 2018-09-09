@@ -35,6 +35,7 @@ class Matrix
     void hardDrop();
     bool collidesWithSettled(std::shared_ptr<Tetramino>);
     std::shared_ptr<Tetramino> getActiveTetramino();
+    void printTitle();
   protected:
   private:
     Vector2DColour matrix;

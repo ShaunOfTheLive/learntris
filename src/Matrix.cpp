@@ -203,3 +203,10 @@ std::shared_ptr<Tetramino> Matrix::getActiveTetramino()
 {
   return activeTetramino;
 }
+
+void Matrix::printTitle()
+{
+  cout << "Learntris (c) 1992 Tetraminex, Inc." << endl;
+  cout << "Press start button to begin." << endl;
+}
+

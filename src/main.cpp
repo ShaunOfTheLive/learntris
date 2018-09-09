@@ -25,6 +25,7 @@ int main()
 
   int score = 0;
   int linesCleared = 0;
+  bool title = false;
 
   do
   {
@@ -46,8 +47,19 @@ int main()
         quit = true;
         goto quit;
         break;
+      case '@':
+        title = true;
+        break;
+      case '!':
+        title = false;
+        break;
       case 'p':
-        matrix.print();
+        if (title) {
+          matrix.printTitle();
+        }
+        else {
+          matrix.print();
+        }
         break;
       case 'P':
         matrix.printWithActive();
