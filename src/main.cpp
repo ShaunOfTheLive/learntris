@@ -71,10 +71,16 @@ int main()
         }
         else {
           matrix.print();
+          if (matrix.isGameOver()) {
+            matrix.printGameOver();
+          }
         }
         break;
       case 'P':
         matrix.printWithActive();
+        if (matrix.isGameOver()) {
+          matrix.printGameOver();
+        }
         break;
       case 'g':
         char square;

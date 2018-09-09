@@ -37,10 +37,14 @@ class Matrix
     std::shared_ptr<Tetramino> getActiveTetramino();
     void printTitle();
     void printPause();
+    void setGameOver();
+    bool isGameOver();
+    void printGameOver();
   protected:
   private:
     Vector2DColour matrix;
     vector<char> matrixMap;
+    bool gameOver;
 
     char cellToChar(Colour);
     static void printBuffer(Vector2DChar);

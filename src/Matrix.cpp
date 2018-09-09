@@ -12,7 +12,7 @@ char Matrix::colours[] = {'.', 'g', 'r', 'b', 'm', 'y', 'c', 'o'};
 
 Matrix::Matrix(): matrix(HEIGHT, vector<Colour>(WIDTH, EMPTY))
 {
-
+  gameOver = false;
   matrixMap = vector<char>(colours, colours + sizeof(colours) / sizeof(char));
 }
 
@@ -165,6 +165,13 @@ void Matrix::nudgeActiveDown()
       fossilizeTetramino(activeTetramino);
       // activeTetramino = nullptr;
       activeTetramino->setSettled();
+
+      if (activeTetramino->collidesHorz(1)) {
+        fossilizeTetramino(activeTetramino);
+        //activeTetramino->setSettled();
+        activeTetramino = nullptr;
+        setGameOver();
+      }
     }
   }
 }
@@ -214,5 +221,20 @@ void Matrix::printPause()
 {
   cout << "Paused" << endl;
   cout << "Press start button to continue." << endl;
+}
+
+void Matrix::setGameOver()
+{
+  gameOver = true;
+}
+
+bool Matrix::isGameOver()
+{
+  return gameOver;
+}
+
+void Matrix::printGameOver()
+{
+  cout << "Game Over" << endl;
 }
 
