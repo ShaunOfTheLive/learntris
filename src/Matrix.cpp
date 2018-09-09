@@ -140,7 +140,7 @@ void Matrix::nudgeActiveLeft()
 {
   if (activeTetramino) {
     activeTetramino->nudgeLeft();
-    if (activeTetramino->collidesVert(-1)) {
+    if (activeTetramino->collidesVert(-1) || collidesWithSettled(activeTetramino)) {
       activeTetramino->nudgeRight();
     }
   }
@@ -150,7 +150,7 @@ void Matrix::nudgeActiveRight()
 {
   if (activeTetramino) {
     activeTetramino->nudgeRight();
-    if (activeTetramino->collidesVert(WIDTH)) {
+    if (activeTetramino->collidesVert(WIDTH) || collidesWithSettled(activeTetramino)) {
       activeTetramino->nudgeLeft();
     }
   }
@@ -160,7 +160,7 @@ void Matrix::nudgeActiveDown()
 {
   if (activeTetramino) {
     activeTetramino->nudgeDown();
-    if (collidesWithSettled(activeTetramino) || activeTetramino->collidesHorz(HEIGHT)) {
+    if (activeTetramino->collidesHorz(HEIGHT) || collidesWithSettled(activeTetramino)) {
       activeTetramino->nudgeUp();
       fossilizeTetramino(activeTetramino);
       // activeTetramino = nullptr;
