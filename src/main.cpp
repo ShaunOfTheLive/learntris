@@ -26,6 +26,7 @@ int main()
   int score = 0;
   int linesCleared = 0;
   bool title = false;
+  bool pause = false;
 
   do
   {
@@ -51,11 +52,22 @@ int main()
         title = true;
         break;
       case '!':
-        title = false;
+        if (title) {
+          title = false;
+        }
+        else if (pause) {
+          pause = false;
+        }
+        else if (!pause) {
+          pause = true;
+        }
         break;
       case 'p':
         if (title) {
           matrix.printTitle();
+        }
+        else if (pause) {
+          matrix.printPause();
         }
         else {
           matrix.print();

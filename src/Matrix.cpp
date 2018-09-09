@@ -210,3 +210,9 @@ void Matrix::printTitle()
   cout << "Press start button to begin." << endl;
 }
 
+void Matrix::printPause()
+{
+  cout << "Paused" << endl;
+  cout << "Press start button to continue." << endl;
+}
+
