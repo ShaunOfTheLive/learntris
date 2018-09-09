@@ -28,6 +28,7 @@ Tetramino::Tetramino(char name)
     col = 0;
     width = tetraminoDefs[i].matrixSize[0];
     height = tetraminoDefs[i].matrixSize[1];
+    settled = false;
     matrix = Vector2DColour(width, vector<Colour>(height, EMPTY));
 
     for (int j = 0; j < 4; ++j) {
@@ -198,6 +199,16 @@ bool Tetramino::collidesVert(int col)
     }
   }
   return result;
+}
+
+bool Tetramino::isSettled()
+{
+  return settled;
+}
+
+void Tetramino::setSettled()
+{
+  settled = true;
 }
 
 Tetramino::Vector2DColour Tetramino::getMatrix()

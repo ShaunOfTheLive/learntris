@@ -35,6 +35,8 @@ class Tetramino
     int width;
     int height;
 
+    bool settled;
+
     void print();
     void blit(Vector2DChar&, bool capital = false);
     void rotate(Direction dir = CW, int angle = 90);
@@ -51,6 +53,9 @@ class Tetramino
     void nudgeUp();
     bool collidesHorz(int);
     bool collidesVert(int);
+    bool isSettled();
+    void setSettled();
+    
     Vector2DColour getMatrix();
   protected:
   private:

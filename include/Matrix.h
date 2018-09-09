@@ -33,6 +33,7 @@ class Matrix
     void nudgeActiveRight();
     void nudgeActiveDown();
     void hardDrop();
+    bool collidesWithSettled(std::shared_ptr<Tetramino>);
     std::shared_ptr<Tetramino> getActiveTetramino();
   protected:
   private:

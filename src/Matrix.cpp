@@ -122,8 +122,8 @@ void Matrix::step(int &score, int &linesCleared)
 
 void Matrix::spawnTetramino(char name)
 {
-  if (activeTetramino) {
-    // TODO: exception? can't spawn another active tetramino until the current one is inactive
+  if (activeTetramino && !activeTetramino->isSettled()) {
+    // TODO: exception? can't spawn another active tetramino until the current one is settled
   }
   else {
     activeTetramino = std::shared_ptr<Tetramino>(new Tetramino(name));
@@ -160,10 +160,11 @@ void Matrix::nudgeActiveDown()
 {
   if (activeTetramino) {
     activeTetramino->nudgeDown();
-    if (activeTetramino->collidesHorz(HEIGHT)) {
+    if (collidesWithSettled(activeTetramino) || activeTetramino->collidesHorz(HEIGHT)) {
       activeTetramino->nudgeUp();
       fossilizeTetramino(activeTetramino);
       // activeTetramino = nullptr;
+      activeTetramino->setSettled();
     }
   }
 }
@@ -173,6 +174,29 @@ void Matrix::hardDrop()
   for (int i = 0; i < HEIGHT; ++i) {
     nudgeActiveDown();
   }
+}
+
+bool Matrix::collidesWithSettled(std::shared_ptr<Tetramino> tetramino)
+{
+  bool result = false;
+
+  Tetramino::Vector2DColour tMatrix = tetramino->getMatrix();
+  int tRow = tetramino->getRow();
+  int tCol = tetramino->getCol();
+  for (size_t i = 0; i < tMatrix.size(); ++i) {
+    for (size_t j = 0; j < tMatrix[i].size(); ++j) {
+      if (tRow + i >= 0 && tRow + i < matrix.size() && tCol + i >= 0 && tCol + i < matrix[tRow + i].size()) {
+        //matrix[tRow + i][tCol + j] = (Matrix::Colour)tMatrix[i][j];
+        if (matrix[tRow + i][tCol + j] != EMPTY && tMatrix[i][j] != EMPTY) {
+          result = true;
+          goto end;
+        }
+      }
+    }
+  }
+
+end:
+  return result;
 }
 
 std::shared_ptr<Tetramino> Matrix::getActiveTetramino()
