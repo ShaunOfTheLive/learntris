@@ -25,8 +25,8 @@ int main()
 
   int score = 0;
   int linesCleared = 0;
-  bool title = false;
-  bool pause = false;
+  enum State { TITLE, PLAYING, PAUSED };
+  State state = PLAYING;  // for the test suite, must start in PLAYING state
 
   do
   {
@@ -49,31 +49,35 @@ int main()
         goto quit;
         break;
       case '@':
-        title = true;
+        state = TITLE;
         break;
       case '!':
-        if (title) {
-          title = false;
-        }
-        else if (pause) {
-          pause = false;
-        }
-        else if (!pause) {
-          pause = true;
+        switch (state) {
+        case TITLE:
+          state = PLAYING;
+          break;
+        case PAUSED:
+          state = PLAYING;
+          break;
+        case PLAYING:
+          state = PAUSED;
+          break;
         }
         break;
       case 'p':
-        if (title) {
+        switch (state) {
+        case TITLE:
           matrix.printTitle();
-        }
-        else if (pause) {
+          break;
+        case PAUSED:
           matrix.printPause();
-        }
-        else {
+          break;
+        case PLAYING:
           matrix.print();
           if (matrix.isGameOver()) {
             matrix.printGameOver();
           }
+          break;
         }
         break;
       case 'P':
